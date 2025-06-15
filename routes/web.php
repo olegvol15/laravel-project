@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [mainController::class, 'index']); 
 Route::get('/contacts', [mainController::class, 'contacts']);
+Route::post('/contacts', [mainController::class, 'sendMail']);
