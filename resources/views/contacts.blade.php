@@ -9,7 +9,7 @@
     <x-message.success :type="'warning'"/>
 
     
-
+    
 
     <form method="POST" action="/contacts">
         @csrf

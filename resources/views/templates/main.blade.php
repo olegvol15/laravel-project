@@ -22,6 +22,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/contacts">Contacts</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/register">Register</a>
+          </li>
           
         </ul>
       </div>
