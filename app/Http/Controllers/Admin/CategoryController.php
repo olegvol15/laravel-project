@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -34,15 +34,16 @@ class CategoryController extends Controller
             'name' => 'required',
             'description' => 'nullable|min:3',
         ]);
-        
-        // $category = new Category();
-        // $category->name = $request->name;
-        // $category->description = $request->description;
-        // $category->save();
+
+        /*$category = new Category();
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();*/
 
         Category::create($request->all());
 
         return redirect()->route('categories.index');
+
     }
 
     /**
@@ -56,24 +57,38 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        // коли edit(string $id)
+        // $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable|min:3',
+        ]);
+
+        $category->update($request->all());
+        return redirect()->route('categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
+
+    
+    
+
