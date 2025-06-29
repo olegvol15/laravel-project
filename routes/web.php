@@ -34,7 +34,7 @@ Route::get('/movie/{id}', [mainController::class, 'movie'])->name('movie.show');
 
 //CRUD
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('auth', 'admin')->name('admin.')->group(function () {
   Route::resource('categories', CategoryController::class);
   Route::resource('actors', ActorController::class);
   Route::resource('movies', MovieController::class);

@@ -3,7 +3,7 @@
 @section('content')
     <h1>Movies</h1>
 
-    <a href="{{ route('movies.create') }}" class="btn btn-primary my-3">Create Movie</a>
+    <a href="{{ route('admin.movies.create') }}" class="btn btn-primary my-3">Create Movie</a>
 
     <table class="table">
         <thead>
@@ -35,9 +35,9 @@
                         @endforeach
                     </td>
                     <td>
-                        <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('admin.movies.edit', $movie->id) }}" class="btn btn-warning">Edit</a>
 
-                        <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

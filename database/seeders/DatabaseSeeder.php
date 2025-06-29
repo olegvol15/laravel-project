@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CategorySeeder::class,
-            MovieSeeder::class
+            MovieSeeder::class,
+            ActorSeeder::class
         ]);
 
         // $categories = Category::factory()->count(5)->create();
