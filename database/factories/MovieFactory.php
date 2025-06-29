@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Category;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movie>
  */
@@ -17,10 +17,10 @@ class MovieFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->words(3, true),
-            'description' => fake()->text(),
-            'url' => fake()->url(),
- 
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->paragraph,
+            'year' => $this->faker->year,
+            'category_id' => Category::inRandomOrder()->first()->id,
         ];
     }
 }

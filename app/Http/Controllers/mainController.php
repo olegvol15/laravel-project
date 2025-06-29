@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 use App\Rules\PhoneFormat;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
+use App\Models\Movie;
 class mainController extends Controller
 {
-    public function index(){
-        $title = "Welcome to the site";
-        $subtitle = "This is the subtitle";
-        $users = ['John', 'Paul', 'George', 'Ringo'];
+    public function index()
+    {
+        $categories = Category::all();
+        return view('index', compact('categories'));
+    }
 
+    public function category($id)
+    {
+        $category = Category::findOrFail($id);
+        $movies = Movie::where('category_id', $id)->get();
+        return view('category', compact('category', 'movies'));
+    }
 
-        return view('index', compact('title', 'subtitle', 'users'));
+    public function movie($id)
+    {
+        $movie = Movie::findOrFail($id);
+        return view('movie', compact('movie'));
     }
 
     public function contacts(){

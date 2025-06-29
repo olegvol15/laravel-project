@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admin\AdminReviewController;
-use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [mainController::class, 'index'])->name('home'); 
+Route::get('/', [mainController::class, 'index']); 
 Route::get('/contacts', [mainController::class, 'contacts']);
 Route::post('/contacts', [mainController::class, 'sendMail']);
 Route::get('/register', [StudentController::class, 'create'])->name('register.form');
@@ -29,18 +28,11 @@ Route::get('/confirmation', [StudentController::class, 'confirmation'])->name('r
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 Route::post('/reviews', [ReviewController::class, 'store']);
 
-Route::get('/category/{id}', [mainController::class, 'category'])->name('category.show');
-Route::get('/movie/{id}', [mainController::class, 'movie'])->name('movie.show');
-
 //CRUD
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->group(function () {
   Route::resource('categories', CategoryController::class);
   Route::resource('actors', ActorController::class);
   Route::resource('movies', MovieController::class);
   Route::resource('reviews', AdminReviewController::class);
 });
-
-Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

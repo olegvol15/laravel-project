@@ -15,20 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            CategorySeeder::class,
+            MovieSeeder::class
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // $categories = Category::factory()->count(5)->create();
+        // $actors = Actor::factory()->count(5)->create();
 
-        $categories = Category::factory()->count(5)->create();
-        $actors = Actor::factory()->count(5)->create();
-
-        Movie::factory()->count(15)->create()->each(function ($movie) use ($categories, $actors) {
-            $movie->category()->associate($categories->random());
-            $movie->actors()->attach($actors->random(3));
-            $movie->save();
-        });
+        // Movie::factory()->count(15)->create()->each(function ($movie) use ($categories, $actors) {
+        //     $movie->category()->associate($categories->random());
+        //     $movie->actors()->attach($actors->random(3));
+        //     $movie->save();
+        // });
     }
 }
